@@ -56,10 +56,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void intersection(){
-        // Si 0a >= 0b || 0a <= 0b + width{}
-        if(bolas.get(0).getBall().getX() >= bolas.get(1).getBall().getX() || bolas.get(0).getBall().getX() <= bolas.get(1).getBall().getX() + bolas.get(1).getBall().getWidth()){
-            bolas.get(0).setDisplacementX(bolas.get(0).getDisplacementX() * (-1));
-            bolas.get(1).setDisplacementX(bolas.get(1).getDisplacementX() * (-1));
+
+        int xa1 = (int) bolas.get(0).getBall().getX();
+        int xa2 = (int) bolas.get(0).getBall().getX() + bolas.get(0).getBall().getWidth();
+
+        int xb1 = (int) bolas.get(1).getBall().getX();
+        int xb2 = (int) bolas.get(1).getBall().getX() + bolas.get(1).getBall().getWidth();
+
+        int ya1 = (int) bolas.get(0).getBall().getY();
+        int ya2 = (int) bolas.get(0).getBall().getY() + bolas.get(0).getBall().getHeight();
+
+        int yb1 = (int) bolas.get(1).getBall().getY();
+        int yb2 = (int) bolas.get(1).getBall().getY() + bolas.get(1).getBall().getHeight();
+
+        if(((xb1 - xa2) * (xb2 - xa1) <= 0) && ((yb1 - ya2)*(yb2- ya1) <= 0)) {
+            if(xa1 >= xb1 && xa1 <= xb2 || xb1 >= xa1 && xb1 <= xa2){
+                bolas.get(0).setDisplacementX(bolas.get(0).getDisplacementX() * (1));
+                bolas.get(1).setDisplacementX(bolas.get(1).getDisplacementX() * (1));
+            }else{
+                bolas.get(0).setDisplacementX(bolas.get(0).getDisplacementX() * (-1));
+                bolas.get(1).setDisplacementX(bolas.get(1).getDisplacementX() * (-1));
+            }
+            bolas.get(0).setDisplacementY(bolas.get(0).getDisplacementY() * (-1));
+            bolas.get(1).setDisplacementY(bolas.get(1).getDisplacementY() * (-1));
         }
     }
 
@@ -102,18 +121,18 @@ public class MainActivity extends AppCompatActivity {
     private void createWindow() {
         this.bolas = new ArrayList<>();
         Bola bola = new Bola();
-        bola.setDisplacementY(20.0);
-        bola.setDisplacementX(20.0);
-        bola.setX(4);
-        bola.setY(4);
+        bola.setDisplacementY(2.0);
+        bola.setDisplacementX(2.0);
+        bola.setX(2);
+        bola.setY(2);
         bola.setBall((ImageView) findViewById(R.id.ball));
         bola.setWidth(this.displayMetrics.widthPixels);
         bola.setHeight(this.displayMetrics.heightPixels);
         this.bolas.add(bola);
 
         Bola bola2 = new Bola();
-        bola2.setDisplacementY(8.0);
-        bola2.setDisplacementX(8.0);
+        bola2.setDisplacementY(2.0);
+        bola2.setDisplacementX(2.0);
         bola2.setX(2);
         bola2.setY(2);
         bola2.setBall((ImageView) findViewById(R.id.ball2));

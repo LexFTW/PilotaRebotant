@@ -1,8 +1,9 @@
 package com.example.tnb_20.pilotarebotant;
 
+import android.support.constraint.solver.widgets.Rectangle;
 import android.widget.ImageView;
 
-public class Bola {
+public class Bola extends Rectangle {
 
     private ImageView ball;
     private int width, height, x, y;
